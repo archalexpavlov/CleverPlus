@@ -1,0 +1,105 @@
+# 🐍 Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# 🌐 Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# 🎯 Poetry
+poetry.lock
+
+# 🔧 IDE & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 🐳 Docker
+.dockerignore
+
+# 📊 Logs
+*.log
+logs/
+*.out
+
+# 🗄️ Databases
+*.db
+*.sqlite3
+*.sqlite
+
+# 🔑 Environment & Secrets
+.env
+.env.local
+.env.development
+.env.staging
+.env.production
+config/local.yml
+config/secrets.yml
+
+# 📂 OS Generated
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 🚀 Deployment
+node_modules/
+npm-debug.log*
+
+# 📈 Monitoring & Observability
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# 🧠 AI & ML
+models/
+*.pkl
+*.h5
+*.pb
+
+# 📋 Temporary Files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# 📊 Redis & Cache
+dump.rdb
+
+# 🔄 Generated Files
+generated/
+auto-generated/

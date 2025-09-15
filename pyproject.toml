@@ -1,0 +1,112 @@
+[tool.poetry]
+name = "Clever+"                                              # Project name (will be displayed in PyPI package registry)
+version = "0.1.0"                                             # Version number (Major.Minor.Patch format)
+description = "Universal platform for creating enterprise AI agents"  # One-line project description
+authors = ["Alex Pavlov <arch.alexey.pavlov@gmail.com>"]      # List of project authors with email addresses
+readme = "README.md"                                          # Path to README file for project documentation
+package-mode = false                                          # Removed packages
+
+[tool.poetry.dependencies]                                    # Runtime dependencies (needed for the app to work)
+python = "^3.13"                                              # Minimum Python version required (3.13.0 or higher, but less than 4.0.0)
+
+# 🌐 Web Framework - UPDATED VERSIONS
+fastapi = "^0.116.1"                                          # Modern async web framework for building APIs (updated from 0.104.1)
+uvicorn = {extras = ["standard"], version = "^0.35.0"}       # ASGI server to run FastAPI apps (updated from 0.24.0)
+
+# 🤖 AI & LLM - UPDATED VERSIONS
+litellm = "^1.77.0"                                           # Universal API for different LLM providers (updated from 1.45.0)
+langchain = "^0.3.27"                                         # Framework for building LLM applications (updated from 0.1.0)
+langchain-community = "^0.3.29"                              # Community integrations for LangChain (updated from 0.0.10)
+openai = "^1.50.0"                                            # Official OpenAI Python client library (updated from 1.40.0)
+
+# 🗄️ Database & ORM - UPDATED VERSIONS
+sqlalchemy = "^2.0.35"                                        # SQL toolkit and Object-Relational Mapping (updated from 2.0.23)
+alembic = "^1.13.3"                                           # Database migration tool for SQLAlchemy (updated from 1.12.1)
+asyncpg = "^0.30.0"                                           # Async PostgreSQL driver (updated from 0.29.0)
+psycopg2-binary = "^2.9.9"                                    # Synchronous PostgreSQL driver (keeping stable version)
+
+# 🔗 Redis & Caching - UPDATED VERSIONS
+redis = "^6.4.0"                                              # Python client for Redis (updated from 5.0.1)
+qdrant-client = "^1.12.0"                                     # Client for Qdrant vector database (updated from 1.6.9)
+
+# ⚙️ Configuration Management - UPDATED VERSIONS
+dynaconf = "^3.2.7"                                           # Dynamic configuration management (updated from 3.2.4)
+python-consul = "^1.1.0"                                      # Python client for HashiCorp Consul (keeping stable)
+pydantic = "^2.11.0"                                          # Data validation using type annotations (updated from 2.5.0)
+pydantic-settings = "^2.6.0"                                  # Settings management using Pydantic (updated from 2.1.0)
+
+# 🔐 Security & Auth - UPDATED VERSIONS
+python-jose = {extras = ["cryptography"], version = "^3.3.0"} # JSON Web Token implementation (keeping stable)
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}          # Password hashing library (keeping stable)
+python-multipart = "^0.0.12"                                 # Parser for multipart/form-data (updated from 0.0.6)
+
+# 📊 Observability - UPDATED VERSIONS
+opentelemetry-api = "^1.27.0"                                 # OpenTelemetry API for distributed tracing (updated from 1.21.0)
+opentelemetry-sdk = "^1.27.0"                                 # OpenTelemetry SDK implementation (updated from 1.21.0)
+opentelemetry-instrumentation = "^0.58b0"                # Automatic instrumentation (updated from 0.42b0)
+structlog = "^24.4.0"                                         # Structured logging library (updated from 23.2.0)
+
+# 🛠️ Development Tools - UPDATED VERSIONS
+pytest = "^8.3.3"                                             # Testing framework (updated from 7.4.3)
+pytest-asyncio = "^0.24.0"                                    # Pytest plugin for async testing (updated from 0.21.1)
+black = "^24.10.0"                                            # Code formatter (updated from 23.11.0)
+ruff = "^0.7.0"                                               # Fast Python linter (updated from 0.1.6)
+mypy = "^1.11.0"                                              # Static type checker (updated from 1.7.0)
+
+# 📦 Utilities - UPDATED VERSIONS
+python-dotenv = "^1.0.1"                                      # Load environment variables from .env files (updated from 1.0.0)
+click = "^8.1.7"                                              # Framework for creating CLIs (keeping stable)
+rich = "^13.9.0"                                              # Library for rich terminal formatting (updated from 13.7.0)
+httpx = "^0.28.0"                                             # HTTP client library (updated from 0.25.2)
+
+[tool.poetry.group.dev.dependencies]                          # Development-only dependencies
+pytest = "^8.3.3"                                             # Testing framework (updated)
+pytest-asyncio = "^0.24.0"                                    # Async testing support (updated)
+pytest-cov = "^5.0.0"                                         # Test coverage measurement (updated from 4.1.0)
+black = "^24.10.0"                                            # Code formatter (updated)
+ruff = "^0.7.0"                                               # Linter (updated)
+mypy = "^1.11.0"                                              # Type checker (updated)
+pre-commit = "^4.0.0"                                         # Git hook framework (updated from 3.5.0)
+
+[build-system]                                                # Build system configuration
+requires = ["poetry-core"]                                    # Build dependencies required by Poetry
+build-backend = "poetry.core.masonry.api"                    # Poetry's build backend
+
+# 🔧 Tool Configurations
+[tool.black]                                                  # Black code formatter settings
+line-length = 88                                              # Maximum characters per line
+target-version = ['py313']                                    # Target Python version for formatting
+include = '\.pyi?$'                                           # File patterns to include
+
+[tool.ruff]                                                   # Ruff linter settings
+target-version = "py313"                                      # Target Python version for linting
+line-length = 88                                              # Maximum line length (match Black)
+select = [                                                    # Which linting rules to enable
+    "E",                                                      # pycodestyle errors
+    "W",                                                      # pycodestyle warnings
+    "F",                                                      # pyflakes (unused imports, variables)
+    "I",                                                      # isort (import sorting)
+    "B",                                                      # flake8-bugbear (common gotchas)
+    "C4",                                                     # flake8-comprehensions
+    "UP",                                                     # pyupgrade (modern syntax)
+]
+ignore = [                                                    # Which rules to ignore
+    "E501",                                                   # line too long (handled by Black)
+    "B008",                                                   # function calls in argument defaults
+    "C901",                                                   # function too complex
+]
+
+[tool.mypy]                                                   # MyPy type checker settings
+python_version = "3.13"                                       # Python version for type checking
+check_untyped_defs = true                                     # Check function bodies without annotations
+disallow_any_generics = true                                  # Disallow generic types without parameters
+disallow_incomplete_defs = true                               # Disallow partially annotated functions
+disallow_untyped_defs = true                                  # Disallow functions without type annotations
+no_implicit_optional = true                                   # Don't assume Optional for default None
+warn_redundant_casts = true                                   # Warn about unnecessary casts
+warn_unused_ignores = true                                    # Warn about unused # type: ignore
+
+[tool.pytest.ini_options]                                     # Pytest test runner settings
+testpaths = ["tests"]                                         # Test directories
+asyncio_mode = "auto"                                         # Auto-detect async tests
+addopts = "-v --tb=short"                                     # Verbose output, short tracebacks
