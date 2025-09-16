@@ -1,4 +1,5 @@
 @echo off
+cd /d "%~dp0\..\..\"
 setlocal enabledelayedexpansion
 
 rem Create timestamp for log file

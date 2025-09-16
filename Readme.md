@@ -5,7 +5,7 @@ Universal platform for creating enterprise AI agents with hybrid architecture an
 ## Getting Started
 
 1. Install prerequisites: Docker, Python 3.13+, Poetry
-2. Run setup: `setup-project.bat`
+2. Run setup from \tools\build-scripts: `setup-project.bat`
 3. Start development: `start-dev.bat`
 
 ## Architecture
