@@ -74,6 +74,30 @@ if errorlevel 1 (
 )
 
 echo.
+echo Step 3.5: Initializing Docker Swarm and Secrets...
+echo ================================================================
+
+rem Initialize Swarm if not already
+docker info | findstr /i "Swarm: active" >nul 2>&1
+if errorlevel 1 (
+    echo Docker Swarm not active. Initializing...
+    docker swarm init
+) else (
+    echo Docker Swarm already active
+)
+
+rem Create secrets if they do not exist
+for %%s in (db_admin_password db_app_password grafana_admin_password redis_password) do (
+    docker secret ls --format "{{.Name}}" | findstr /x %%s >nul
+    if errorlevel 1 (
+        echo Creating secret %%s
+        docker secret create %%s ".\secrets\%%s"
+    ) else (
+        echo Secret %%s already exists
+    )
+)
+
+echo.
 echo Step 4: Starting infrastructure services...
 echo ================================================================
 echo Starting PostgreSQL, Redis, and Qdrant...

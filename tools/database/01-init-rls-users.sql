@@ -1,21 +1,29 @@
 -- 01-init-rls-users.sql
 -- Initialize Row Level Security users for AI Agent Platform
--- This script runs during PostgreSQL container initialization
+-- Uses passwords from /secrets
 
--- Create admin user (for migrations, schema changes, can bypass RLS)
-DO $$ BEGIN
+-- Create admin_user
+DO $$
+DECLARE
+  admin_pwd text;
+BEGIN
+  admin_pwd := trim(pg_read_file('/secrets/db_admin_password', 0, 1024));
   IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'admin_user') THEN
-    CREATE ROLE admin_user WITH LOGIN PASSWORD 'admin_password_2025';
+    EXECUTE format('CREATE ROLE admin_user WITH LOGIN PASSWORD %L;', admin_pwd);
     RAISE NOTICE 'Created admin_user role';
   ELSE
     RAISE NOTICE 'admin_user role already exists';
   END IF;
 END $$;
 
--- Create app user (for application queries, subject to RLS policies)  
-DO $$ BEGIN
+-- Create app_user
+DO $$
+DECLARE
+  app_pwd text;
+BEGIN
+  app_pwd := trim(pg_read_file('/secrets/db_app_password', 0, 1024));
   IF NOT EXISTS (SELECT FROM pg_roles WHERE rolname = 'app_user') THEN
-    CREATE ROLE app_user WITH LOGIN PASSWORD 'app_password_2025';
+    EXECUTE format('CREATE ROLE app_user WITH LOGIN PASSWORD %L;', app_pwd);
     RAISE NOTICE 'Created app_user role';
   ELSE
     RAISE NOTICE 'app_user role already exists';

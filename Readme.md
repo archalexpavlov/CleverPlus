@@ -21,4 +21,4 @@ Universal platform for creating enterprise AI agents with hybrid architecture an
 - **Redis** - Caching layer
 - **Qdrant** - Vector database
 
-For detailed documentation, see the project wiki at https://www.notion.so/Clever-Wiki-26f2f9743cb7804ea22dc74ef11c5f3c?source=copy_link
+For detailed documentation, check /docs folder
