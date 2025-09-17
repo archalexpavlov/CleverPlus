@@ -1,16 +1,14 @@
 ﻿# Deployment Strategy
 
-## Environment Strategy
+🔑 Secrets
 
-- **Development**: Local Docker Compose
-- **Staging**: Kubernetes cluster  
-- **Production**: Kubernetes with auto-scaling
+Сreate a secrets/ folder in the project root with the following files (no extensions):
 
-## Deployment Phases
+-db_admin_password - PostgreSQL admin user
+-db_app_password - PostgreSQL app user
+-grafana_admin_password - Grafana admin
+-redis_password - Redis authentication
 
-1. **Phase 1**: Monorepo Foundation
-2. **Phase 2**: Customer Support (Project A)
-3. **Phase 3**: Internal Sales (Project B)
-4. **Phase 4**: Independent Evolution
+These files are mounted into containers at /secrets and referenced via *_FILE environment variables.
 
 *TODO: Add detailed deployment procedures and rollback strategies*

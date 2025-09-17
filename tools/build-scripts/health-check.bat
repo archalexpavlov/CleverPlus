@@ -68,13 +68,13 @@ call :log "================================================"
 
 call :log "--- PostgreSQL Database ---"
 docker compose ps postgres >> "%logfile%" 2>&1
-docker compose exec postgres pg_isready -U clever_user >> "%logfile%" 2>&1 && (
+docker compose exec postgres pg_isready -U admin_user >> "%logfile%" 2>&1 && (
     call :log "✓ PostgreSQL connection OK"
 ) || (
     call :log "✗ PostgreSQL connection failed"
 )
 
-docker compose exec postgres psql -U clever_user -d clever_db -c "SELECT version();" >> "%logfile%" 2>&1 && (
+docker compose exec postgres psql -U admin_user -d clever_db -c "SELECT version();" >> "%logfile%" 2>&1 && (
     call :log "✓ PostgreSQL database accessible"
 ) || (
     call :log "✗ PostgreSQL database not accessible"

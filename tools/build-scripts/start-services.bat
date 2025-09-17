@@ -55,7 +55,7 @@ docker compose ps
 
 echo.
 echo Testing service connectivity...
-docker compose exec postgres pg_isready -U clever_user >nul 2>&1 && echo "✓ PostgreSQL responding" || echo "✗ PostgreSQL not responding"
+docker compose exec postgres pg_isready -U admin_user >nul 2>&1 && echo "✓ PostgreSQL responding" || echo "✗ PostgreSQL not responding"
 docker compose exec redis redis-cli -a clever_redis_password_2025 ping >nul 2>&1 && echo "✓ Redis responding" || echo "✗ Redis not responding"
 curl -s http://localhost:6333/health >nul 2>&1 && echo "✓ Qdrant API responding" || echo "✗ Qdrant not responding"
 
@@ -66,7 +66,7 @@ echo ================================================================
 echo.
 echo Available Services:
 echo - PostgreSQL Database: localhost:5432
-echo   Username: clever_user
+echo   Username: admin_user
 echo   Database: clever_db
 echo.
 echo - Redis Cache: localhost:6379

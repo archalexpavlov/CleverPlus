@@ -5,8 +5,13 @@ Universal platform for creating enterprise AI agents with hybrid architecture an
 ## Getting Started
 
 1. Install prerequisites: Docker, Python 3.13+, Poetry
-2. Run setup from \tools\build-scripts: `setup-project.bat`
-3. Start development: `start-dev.bat`
+2. In the project root, create a folder secrets and add 4 files (no extensions): 
+- db_admin_password
+- db_app_password
+- grafana_admin_password
+- redis_password
+3. Run setup from \tools\build-scripts: `setup-project.bat`
+4. Start development: `start-dev.bat`
 
 ## Architecture
 
