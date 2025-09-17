@@ -42,14 +42,9 @@ else:
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Import your database models here for auto-generation of migrations
-# When you have models, uncomment and modify these lines:
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
-
-# For now, we don't have models yet, so target_metadata is None
-# This means migrations won't be auto-generated from model changes
-target_metadata = None
+# Import your database models for auto-generation of migrations
+from packages.core.models import Base
+target_metadata = Base.metadata
 
 # You can get other settings from alembic.ini if needed:
 # my_important_option = config.get_main_option("my_important_option")
@@ -71,7 +66,7 @@ def run_migrations_offline() -> None:
     # No database engine is created - just generates SQL
     context.configure(
         url=url,
-        target_metadata=target_metadata,  # Our models (None for now)
+        target_metadata=target_metadata,  # Our models from packages/core/models.py
         literal_binds=True,              # Don't use parameter placeholders
         dialect_opts={"paramstyle": "named"},  # Use :parameter_name style
     )
@@ -102,7 +97,7 @@ def run_migrations_online() -> None:
         # Configure migration context with the real database connection
         context.configure(
             connection=connection,           # Use this database connection
-            target_metadata=target_metadata  # Our models (None for now)
+            target_metadata=target_metadata  # Our models from packages/core/models.py
         )
 
         # Execute migrations within a database transaction
